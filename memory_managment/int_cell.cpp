@@ -108,27 +108,3 @@ bool operator >= (const int_cell& lhs, const int_cell& rhs)
 {
   return !(lhs < rhs);
 }
-
-void* int_cell::operator new(size_t size)
-{
-  new_handler globalHandler = ::set_new_handler(m_handle);
-  void* memory;
-  try 
-  {
-    memory = ::operator new(size);
-  } 
-  catch(const bad_alloc& e) 
-  {
-    ::set_new_handler(globalHandler);
-    throw;
-  }
-  ::set_new_handler(globalHandler);
-  return memory;
-}
-
-new_handler int_cell::set_new_handler(new_handler handle)
-{
-  new_handler old = m_handle;
-  m_handle = handle;
-  return old;
-}

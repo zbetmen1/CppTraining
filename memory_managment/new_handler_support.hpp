@@ -7,7 +7,10 @@
 
 /**
  * @brief Provides support for memory allocation error handling using simple callback functions.
- * 
+ * @details This class should be used in this way: class A: public new_handler_support\<A\> {...}.
+ *          Inheritance ensures that class A will inherit set_new_handler and operator new, and       
+ *          template implementation ensures that each class that inherits set_new_handler will have unique
+ *          new_handler field (m_handle).
  */
 template <typename T>
 class new_handler_support

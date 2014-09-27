@@ -23,14 +23,13 @@
 #ifndef INT_CELL_HPP
 #define INT_CELL_HPP
 
-#include <new>
-#include <cstddef>
+#include "new_handler_support.hpp"
 
 /**
  * @brief This is simple class that wraps dynamically allocated int. It is used for practicing memory management in C++.
  * 
  */
-class int_cell
+class int_cell: public new_handler_support<int_cell>
 {
   int* m_value;
   static std::new_handler m_handle;
@@ -49,10 +48,6 @@ public:
     /// Public API
     inline int value() const { return *m_value; }
     inline int value(int newValue) { *m_value = newValue; }
-    
-    /// Taking care of out of memory condition
-    static std::new_handler set_new_handler(std::new_handler handle);
-    static void* operator new(std::size_t size);
 };
 
 /// Equality operators
