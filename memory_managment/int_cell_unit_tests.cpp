@@ -26,3 +26,16 @@ TEST(IntCellTest, Inequality)
   int_cell cell2{};
   ASSERT_NE(cell1, cell2);
 }
+
+TEST(IntCellTest, NewTest)
+{
+  for (int i = 0; i < 256; ++i)
+    int_cell* p = new int_cell;
+  int_cell* pover = new int_cell;
+}
+
+TEST(IntCellTest, AllocateArray)
+{
+  int_cell* array = new int_cell[256];
+  delete[] array;
+}

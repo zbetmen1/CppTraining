@@ -29,10 +29,15 @@
  * @brief This is simple class that wraps dynamically allocated int. It is used for practicing memory management in C++.
  * 
  */
-class int_cell: public new_handler_support<int_cell>
+class int_cell
 {
-  int* m_value;
-  static std::new_handler m_handle;
+  union // Union to support custom pool allocation
+  {
+    int* m_value;
+    int_cell* m_next;
+  };
+  static int_cell* m_headOfList;// Head of free list
+  static constexpr std::size_t BLOCK_SIZE = 256U; // Constant number of elements allocated per block
 public:
     /// Constructors section
     explicit int_cell();
@@ -48,6 +53,10 @@ public:
     /// Public API
     inline int value() const { return *m_value; }
     inline int value(int newValue) { *m_value = newValue; }
+    
+    /// Memory management
+    static void* operator new(std::size_t n); // Note: This 2 functions provide memory pool allocation. For memory pool it is guaranteed that max
+    static void operator delete(void* deleteObject, std::size_t n); // allocated amount of memory will be equal to maximum number of allocated elements.
 };
 
 /// Equality operators
