@@ -1,5 +1,8 @@
+#include <list>
 #include <gtest/gtest.h>
 #include "int_cell.hpp"
+
+using namespace std;
 
 TEST(IntCellTest, ExplicitConstruction)
 {
@@ -27,15 +30,12 @@ TEST(IntCellTest, Inequality)
   ASSERT_NE(cell1, cell2);
 }
 
-TEST(IntCellTest, NewTest)
+TEST(LinkedListTest, DefaultPerformance)
 {
-  for (int i = 0; i < 256; ++i)
-    int_cell* p = new int_cell;
-  int_cell* pover = new int_cell;
-}
-
-TEST(IntCellTest, AllocateArray)
-{
-  int_cell* array = new int_cell[256];
-  delete[] array;
+  static constexpr std::size_t NUM_OF_ELEMENTS = 10000000;
+  list<double> l;
+  for (std::size_t i = 0U; i < NUM_OF_ELEMENTS; ++i)
+  {
+    l.push_back(i);
+  }
 }
