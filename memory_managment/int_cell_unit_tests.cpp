@@ -29,13 +29,3 @@ TEST(IntCellTest, Inequality)
   int_cell cell2{};
   ASSERT_NE(cell1, cell2);
 }
-
-TEST(LinkedListTest, DefaultPerformance)
-{
-  static constexpr std::size_t NUM_OF_ELEMENTS = 10000000;
-  list<double> l;
-  for (std::size_t i = 0U; i < NUM_OF_ELEMENTS; ++i)
-  {
-    l.push_back(i);
-  }
-}

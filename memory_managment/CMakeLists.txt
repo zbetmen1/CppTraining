@@ -6,7 +6,7 @@ project(memory_managment)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-add_executable(memory_managment memory_pool.cpp int_cell_unit_tests.cpp int_cell.cpp main.cpp)
+add_executable(memory_managment pool_allocator.cpp memory_pool_unit_tests.cpp memory_pool.cpp int_cell_unit_tests.cpp int_cell.cpp main.cpp)
 
 # Link with gtest
 target_link_libraries(memory_managment gtest pthread)
