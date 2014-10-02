@@ -1,5 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+
 project(constructors_destructors_assignment)
 
-add_executable(constructors_destructors_assignment delegate_constructor.cpp main.cpp)
+add_executable(constructors_destructors_assignment artificial_abstract_class.cpp delegate_constructor.cpp main.cpp)
 
 install(TARGETS constructors_destructors_assignment RUNTIME DESTINATION bin)
